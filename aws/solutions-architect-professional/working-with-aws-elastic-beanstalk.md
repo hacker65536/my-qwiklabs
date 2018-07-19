@@ -42,3 +42,5 @@ click `Change platform configuration` link then configure
 ### Modify instances
 
 click __modify__ in the __Instances__ box
+
+- Instance Type: `t2.micro`
