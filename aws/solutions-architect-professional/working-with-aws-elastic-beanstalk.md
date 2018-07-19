@@ -44,3 +44,27 @@ click `Change platform configuration` link then configure
 click __modify__ in the __Instances__ box
 
 - Instance Type: `t2.micro`
+
+### Modify capacity
+
+- [x] Single instance
+- [ ] Load balanced
+
+### Modify security
+
+select below
+- Service role
+- EC2 key pair
+- IAM instance profile
+
+### Modify database
+
+- Engine: mysql
+- Instance class: db.t2.micro
+- Storage: 5GB
+- Username: sampleRubyRoot
+- Password: myRubyPassword123
+
+### Create environament
+
+click `Create environment`
