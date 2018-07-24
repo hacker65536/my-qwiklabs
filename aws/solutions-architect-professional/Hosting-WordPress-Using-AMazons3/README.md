@@ -91,3 +91,17 @@ Converted links in 12 files in 0.009 seconds.
 ```
 sudo chown -R apache:apache /var/www/html/wordpress
 ```
+```
+# Determine Region
+AZ=`curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone/`
+REGION=${AZ::-1}
+
+# Retrieve Amazon S3 bucket name starting with wordpress-*
+BUCKET=`aws s3api list-buckets --query "Buckets[?starts_with(Name, 'wordpress-')].Name | [0]" --output text`
+```
+```
+$ echo $AZ
+us-west-2a
+$ echo $BUCKET
+wordpress-bj92
+```
