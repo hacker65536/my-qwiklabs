@@ -87,3 +87,7 @@ Converting links in wordpress-static/wp-admin/load-styles.php?c=1&dir=ltr&load%5
 Converting links in wordpress-static/wp-content/themes/twentyseventeen/style.css?ver=4.9.7.css... nothing to do.
 Converted links in 12 files in 0.009 seconds.
 ```
+
+```
+sudo chown -R apache:apache /var/www/html/wordpress
+```
