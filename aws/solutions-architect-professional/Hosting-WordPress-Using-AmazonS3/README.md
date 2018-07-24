@@ -144,3 +144,5 @@ $ crontab -l
 $ cat /home/ec2-user/wordpress-to-s3.sh
 cd /var/www/html/wordpress; sudo rm -rf wordpress-static; sudo /bin/sh wpstatic.sh -a; aws s3 sync --acl public-read --delete /var/www/html/wordpress/wordpress-static s3://wordpress-bj92
 ```
+
+![](screenshot.png)
