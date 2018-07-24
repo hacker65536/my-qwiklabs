@@ -91,6 +91,8 @@ Converted links in 12 files in 0.009 seconds.
 ```
 sudo chown -R apache:apache /var/www/html/wordpress
 ```
+
+## Uploading Static wordpress pages to Amazon S3
 ```
 # Determine Region
 AZ=`curl --silent http://169.254.169.254/latest/meta-data/placement/availability-zone/`
@@ -104,4 +106,41 @@ $ echo $AZ
 us-west-2a
 $ echo $BUCKET
 wordpress-bj92
+```
+```
+aws s3 sync --acl public-read /var/www/html/wordpress/wordpress-static s3://$BUCKET
+```
+
+http://wordpress-bj92.s3-website-us-west-2.amazonaws.com/
+
+S3 Endpoint
+
+
+## Automating the Upload to Amazon S3 
+
+```
+echo "cd /var/www/html/wordpress; sudo rm -rf wordpress-static; sudo /bin/sh wpstatic.sh -a; aws s3 sync --acl public-read --delete /var/www/html/wordpress/wordpress-static s3://$BUCKET" > $HOME/wordpress-to-s3.sh;
+
+chmod 0755 $HOME/wordpress-to-s3.sh;
+```
+
+
+```
+# Write out the current crontab
+crontab -l > /tmp/mycron
+
+# Add a new cron command
+echo "* * * * * /home/ec2-user/wordpress-to-s3.sh" >> /tmp/mycron
+
+# Install new cron file
+crontab /tmp/mycron
+rm /tmp/mycron
+```
+```conle
+$ crontab -l
+* * * * * /home/ec2-user/wordpress-to-s3.sh
+```
+```console
+$ cat /home/ec2-user/wordpress-to-s3.sh
+cd /var/www/html/wordpress; sudo rm -rf wordpress-static; sudo /bin/sh wpstatic.sh -a; aws s3 sync --acl public-read --delete /var/www/html/wordpress/wordpress-static s3://wordpress-bj92
 ```
