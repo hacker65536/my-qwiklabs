@@ -60,3 +60,10 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 google760663_student@gcelab:~$ 
 ```
+```console
+oogle760663_student@gcelab:~$ sudo su -
+root@gcelab:~# apt-get update
+---snip---
+Fetched 1,304 kB in 2s (584 kB/s)
+Reading package lists... Done
+```
