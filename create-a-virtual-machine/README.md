@@ -98,6 +98,54 @@ NAME     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   S
 gcelab2  us-central1-c  n1-standard-1               10.128.0.3   35.194.57.72  RUNNING
 ```
 
+try following command
 `gcloud compute instances create --help`  
 `gcloud config set compute/zone ...`  
 `gcloud config set compute/region ...`
+
+
+SSH into vm using `gcloud`
+
+Enter through the passphrase section to leave the passphrase empty.
+
+```console
+google760785_student@cloudshell:~ (qwiklabs-gcp-c978845dd406cca9)$ gcloud compute ssh gcelab2 --zone us-central1-c
+WARNING: The public SSH key file for gcloud does not exist.
+WARNING: The private SSH key file for gcloud does not exist.
+WARNING: You do not have an SSH key for gcloud.
+WARNING: SSH keygen will be executed to generate a key.
+This tool needs to create the directory
+[/home/google760785_student/.ssh] before being able to generate SSH
+keys.
+Do you want to continue (Y/n)?  Y
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/google760785_student/.ssh/google_compute_engine.
+Your public key has been saved in /home/google760785_student/.ssh/google_compute_engine.pub.
+The key fingerprint is:
+SHA256:+65UuIjzKVoS5hqnPnyKIxbkLX5/G9JXrDZdinji748 google760785_student@cs-6000-devshell-vm-41acdc49-f140-400a-bcc6-61427883ea7f
+The key's randomart image is:
++---[RSA 2048]----+
+|                 |
+|                 |
+|                 |
+| .       ..      |
+|o +     S .o .   |
+| * o ....+= o    |
+|+ * +..=+B o     |
+|+X =.oo+*.o      |
+|B+*..o+o=E+.     |
++----[SHA256]-----+
+Updating project ssh metadata...⠶Updated [https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-c978845dd406cca9].
+Updating project ssh metadata...done.
+Waiting for SSH key to propagate.
+Warning: Permanently added 'compute.4146277858329574029' (ECDSA) to the list of known hosts.
+Linux gcelab2 4.9.0-7-amd64 #1 SMP Debian 4.9.110-1 (2018-07-05) x86_64
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+google760785_student@gcelab2:~$
+```
