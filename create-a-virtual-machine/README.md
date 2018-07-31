@@ -97,3 +97,7 @@ Created [https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-c978845dd40
 NAME     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
 gcelab2  us-central1-c  n1-standard-1               10.128.0.3   35.194.57.72  RUNNING
 ```
+
+`gcloud compute instances create --help`  
+`gcloud config set compute/zone ...`  
+`gcloud config set compute/region ...`
