@@ -67,3 +67,14 @@ root@gcelab:~# apt-get update
 Fetched 1,304 kB in 2s (584 kB/s)
 Reading package lists... Done
 ```
+
+
+```console
+root@gcelab:~# apt-get install nginx -y
+Reading package lists... Done
+Building dependency tree       
+---snip----
+Setting up nginx (1.10.3-1+deb9u1) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Processing triggers for sgml-base (1.29) ...
+```
