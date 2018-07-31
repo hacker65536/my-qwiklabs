@@ -149,3 +149,29 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 google760785_student@gcelab2:~$
 ```
+
+via webUI (click SSH: open in browser window)
+```console
+Connected, host fingerprint: ssh-rsa 2048 7C:C9:74:7B:13:7B:B0:11:FA:62:2F:47:D2:0F:72:88:11:5B:B9:BB:11:18:95:6A:F
+5:E3:75:58:EE:D6:AC:41
+Linux gcelab2 4.9.0-7-amd64 #1 SMP Debian 4.9.110-1 (2018-07-05) x86_64
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Jul 31 15:52:48 2018 from 35.234.17.38
+google760785_student@gcelab2:~$ w
+ 15:54:40 up 7 min,  2 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+google76 pts/0    35.234.17.38     15:52   14.00s  0.00s  0.00s -bash
+google76 pts/1    74.125.41.162    15:54    0.00s  0.00s  0.00s w
+```
+via cloud chell
+```console
+google760785_student@gcelab2:~$ w
+ 15:54:42 up 7 min,  2 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+google76 pts/0    35.234.17.38     15:52    0.00s  0.00s  0.00s w
+google76 pts/1    74.125.41.162    15:54    2.00s  0.00s  0.00s -bash
+```
