@@ -44,4 +44,6 @@ information on node autorepairs.
 WARNING: Starting in Kubernetes v1.10, new clusters will no longer get compute-rw and storage-ro scopes added to what is specified in --scopes (though the latter will remain included in
  the default --scopes). To use these scopes, add them explicitly to --scopes. To use the new behavior, set container/new_scopes_behavior property (gcloud config set container/new_scopes
 _behavior true).
+
+Creating cluster spinnaker-tutorial...⠛
 ```
