@@ -46,4 +46,11 @@ WARNING: Starting in Kubernetes v1.10, new clusters will no longer get compute-r
 _behavior true).
 
 Creating cluster spinnaker-tutorial...⠛
+
+Creating cluster spinnaker-tutorial...done.
+Created [https://container.googleapis.com/v1/projects/qwiklabs-gcp-e3f82dd64d10f7b8/zones/us-central1-f/clusters/spinnaker-tutorial].
+To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/us-central1-f/spinnaker-tutorial?project=qwiklabs-gcp-e3f82dd64d10f7b8
+kubeconfig entry generated for spinnaker-tutorial.
+NAME                LOCATION       MASTER_VERSION  MASTER_IP       MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
+spinnaker-tutorial  us-central1-f  1.9.7-gke.6     35.226.186.175  n1-standard-2  1.9.7-gke.6   3          RUNNING
 ```
