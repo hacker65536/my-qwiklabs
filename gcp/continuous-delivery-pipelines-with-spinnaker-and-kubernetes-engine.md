@@ -247,3 +247,124 @@ EOF
 ```
 
 ### deploy the spinnaker chart
+
+
+```
+NAME:   cd
+LAST DEPLOYED: Fri Sep 21 19:10:13 2018
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Service
+NAME                      CLUSTER-IP     EXTERNAL-IP  PORT(S)                      AGE
+cd-spinnaker-gate         10.43.245.166  <none>       8084/TCP                     3m
+cd-spinnaker-igor         10.43.252.133  <none>       8088/TCP,8080/TCP,50000/TCP  3m
+cd-jenkins                10.43.251.88   <none>       8080/TCP                     3m
+cd-spinnaker-deck         10.43.249.194  <none>       9000/TCP                     3m
+cd-spinnaker-clouddriver  10.43.242.16   <none>       7002/TCP                     3m
+cd-spinnaker-front50      10.43.242.206  <none>       8080/TCP                     3m
+cd-redis                  10.43.242.22   <none>       6379/TCP                     3m
+cd-spinnaker-echo         10.43.242.214  <none>       8089/TCP                     3m
+cd-spinnaker-rosco        10.43.240.250  <none>       8087/TCP                     3m
+cd-jenkins-agent          10.43.248.227  <none>       50000/TCP                    3m
+cd-spinnaker-orca         10.43.251.254  <none>       8083/TCP                     3m
+
+==> v1beta1/Deployment
+NAME                      DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+cd-jenkins                1        1        1           1          3m
+cd-spinnaker-igor         1        1        1           1          3m
+cd-spinnaker-echo         1        1        1           1          3m
+cd-spinnaker-clouddriver  1        1        1           1          3m
+cd-spinnaker-deck         1        1        1           1          3m
+cd-spinnaker-gate         1        1        1           1          3m
+cd-spinnaker-rosco        1        1        1           1          3m
+cd-redis                  1        1        1           1          3m
+cd-spinnaker-front50      1        1        1           1          3m
+cd-spinnaker-orca         1        1        1           0          3m
+
+==> v1/Secret
+NAME                   TYPE    DATA  AGE
+cd-redis               Opaque  1     3m
+cd-jenkins             Opaque  2     3m
+cd-spinnaker-registry  Opaque  1     3m
+cd-spinnaker-gcs       Opaque  1     3m
+
+==> v1/ConfigMap
+NAME                           DATA  AGE
+cd-spinnaker-s3-config         1     3m
+cd-spinnaker-spinnaker-config  18    3m
+cd-jenkins                     3     3m
+cd-jenkins-jobs                3     3m
+cd-spinnaker-tests             1     3m
+cd-jenkins-tests               1     3m
+
+==> v1/PersistentVolumeClaim
+NAME        STATUS  VOLUME                                    CAPACITY  ACCESSMODES  STORAGECLASS  AGE
+cd-jenkins  Bound   pvc-8984fdf5-bd86-11e8-8efa-42010a80007c  8Gi       RWO          standard      3m
+cd-redis    Bound   pvc-89863540-bd86-11e8-8efa-42010a80007c  8Gi       RWO          standard      3m
+
+
+NOTES:
+1. You will need to create 2 port forwarding tunnels in order to access the Spinnaker UI:
+  export DECK_POD=$(kubectl get pods --namespace default -l "component=deck,app=cd-spinnaker" -o jsonpath="{.items[0].metadata.name}")
+  kubectl port-forward --namespace default $DECK_POD 9000
+
+2. Visit the Spinnaker UI by opening your browser to: http://127.0.0.1:9000
+
+For more info on the Kubernetes integration for Spinnaker, visit:
+  http://www.spinnaker.io/docs/kubernetes-source-to-prod
+```  
+```console
+$ export DECK_POD=$(kubectl get pods --namespace default -l "component=deck" \
+    -o jsonpath="{.items[0].metadata.name}")
+$kubectl port-forward --namespace default $DECK_POD 8080:9000 >> /dev/null &
+[1] 805
+```
+
+
+
+### building the docker image
+
+create source code repository
+```
+$ wget https://gke-spinnaker.storage.googleapis.com/sample-app.tgz
+$ tar xzfv sample-app.tgz
+sample-app/
+sample-app/.dockerignore
+sample-app/.gitignore
+sample-app/Dockerfile
+sample-app/Jenkinsfile
+sample-app/README.md
+sample-app/cloudbuild.yaml
+sample-app/cmd/
+sample-app/cmd/gke-info/
+sample-app/cmd/gke-info/common-service.go
+sample-app/cmd/gke-info/html.go
+sample-app/cmd/gke-info/main.go
+sample-app/cmd/gke-info/messages.go
+sample-app/cmd/gke-info/stackdriver.go
+sample-app/cmd/gke-info/transport.go
+sample-app/glide.lock
+sample-app/glide.yaml
+sample-app/k8s/
+sample-app/k8s/services/
+sample-app/k8s/services/sample-backend-canary.yaml
+sample-app/k8s/services/sample-backend-prod.yaml
+sample-app/k8s/services/sample-frontend-canary.yaml
+sample-app/k8s/services/sample-frontend-prod.yaml
+sample-app/pkg/
+sample-app/pkg/stackdriver/
+sample-app/pkg/stackdriver/monitoring.go
+sample-app/spinnaker/
+sample-app/spinnaker/pipeline-deploy.json
+sample-app/tests/
+sample-app/tests/pipelines/
+sample-app/tests/pipelines/spinnaker-tutorial.yaml
+sample-app/tests/scripts/
+sample-app/tests/scripts/cleanup.sh
+sample-app/tests/scripts/install-spinnaker.sh
+sample-app/tests/tasks/
+sample-app/tests/tasks/build-gke-info.yaml
+sample-app/tests/tasks/install-spinnaker.yaml
+```
